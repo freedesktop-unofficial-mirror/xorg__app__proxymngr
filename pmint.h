@@ -25,7 +25,7 @@ not be used in advertising or otherwise to promote the sale, use or
 other dealings in this Software without prior written authorization
 from The Open Group.
 */
-/* $XFree86$ */
+/* $XFree86: xc/programs/proxymngr/pmint.h,v 1.6 2003/09/13 21:33:11 dawes Exp $ */
 
 #include <stdio.h>
 #include <X11/Xos.h>

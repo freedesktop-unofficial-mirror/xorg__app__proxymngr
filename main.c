@@ -25,7 +25,7 @@ not be used in advertising or otherwise to promote the sale, use or
 other dealings in this Software without prior written authorization
 from The Open Group.
 */
-/* $XFree86$ */
+/* $XFree86: xc/programs/proxymngr/main.c,v 1.9 2003/07/09 15:27:36 tsi Exp $ */
 
 #include <stdlib.h>
 #include "pmint.h"
