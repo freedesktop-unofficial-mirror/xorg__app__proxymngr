@@ -25,13 +25,15 @@ not be used in advertising or otherwise to promote the sale, use or
 other dealings in this Software without prior written authorization
 from The Open Group.
 */
+/* $XFree86: xc/programs/proxymngr/config.c,v 1.7 2001/12/14 20:01:01 dawes Exp $ */
+
+#include <stdlib.h>
 
 #include "pmint.h"
 #include "config.h"
 
-
 static Bool
-getline (
+getnextline (
 char	**pbuf,
 int	*plen,
 FILE	*f)
@@ -127,7 +129,7 @@ GetConfig (
     buflen = 0;
     n = strlen (serviceName);
 
-    while (!found && getline (&buf, &buflen, fp))
+    while (!found && getnextline (&buf, &buflen, fp))
     {
 	if (buf[0] == '!')
 	    continue;
