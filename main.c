@@ -25,6 +25,7 @@ not be used in advertising or otherwise to promote the sale, use or
 other dealings in this Software without prior written authorization
 from The Open Group.
 */
+/* $XFree86: xc/programs/proxymngr/main.c,v 1.7 2001/12/19 21:37:35 dawes Exp $ */
 
 #include <stdlib.h>
 #include "pmint.h"
@@ -43,12 +44,14 @@ from The Open Group.
 #include <sys/socket.h>
 #include <netdb.h>
 
-void InstallIOErrorHandler ();
-void NewConnectionXtProc ();
-static Status PMprotocolSetupProc ();
-void PMReplyProcessMessages ();
-void PMSetupProcessMessages ();
-Bool HostBasedAuthProc ();
+static int PMprotocolSetupProc ( IceConn iceConn, int majorVersion, 
+				 int minorVersion, char *vendor, 
+				 char *release, IcePointer *clientDataRet, 
+				 char **failureReasonRet );
+static void SendGetProxyAddr ( PMconn *pmConn, char *serviceName, 
+			       char *serverAddress, char *hostAddress, 
+			       char *startOptions, int authLen, 
+			       char *authName, char *authData );
 
 static int PMAcceptorOpcode;
 static int PMOriginatorOpcode;
@@ -95,11 +98,8 @@ SetCloseOnExec (fd)
  * Main program
  */
 
-main (argc, argv)
-
-int  argc;
-char **argv;
-
+int
+main (int argc, char *argv[])
 {
     IceListenObj *listenObjs;
     int		numTransports, i;
@@ -207,6 +207,7 @@ char **argv;
      * Main loop
      */
     XtAppMainLoop (appContext);
+    exit (0);
 }
 
 
@@ -498,7 +499,7 @@ Bool		 swap;
 
 		retVal = getpeername(IceConnectionNumber(iceConn),
 				     (struct sockaddr *) &serverSock,
-				     &addrLen);
+				     (void *) &addrLen);
 		if (!retVal) 
 		{
 		    struct hostent *hostent;
@@ -859,7 +860,7 @@ Bool		 swap;
 
 	fprintf(stderr, "Received ICE Error: class=0x%x\n  offending minor opcode=%d, severity=%d, sequence=%d\n",
 		pMsg->errorClass, pMsg->offendingMinorOpcode, pMsg->severity,
-		pMsg->offendingSequenceNum);
+		(int)pMsg->offendingSequenceNum);
 
 	IceDisposeCompleteMessage (iceConn, pStart);
 
@@ -903,7 +904,7 @@ ForwardRequest( requestor, serviceName, serverAddress, hostAddress,
     char *authName, *authData;
 {
     running_proxy_list	*proxyList;
-    running_proxy	*runningProxy;
+    running_proxy	*runningProxy = NULL;
     int			pushRequest = 0;
 
     if ((proxyList = GetRunningProxyList (
@@ -1029,7 +1030,6 @@ IcePointer	*watch_data;
     if (opening)
     {
 	XtAppContext appContext = (XtAppContext) client_data;
-	void _XtProcessIceMsgProc ();
 
 	*watch_data = (IcePointer) XtAppAddInput (
 	    appContext,

@@ -25,12 +25,14 @@ not be used in advertising or otherwise to promote the sale, use or
 other dealings in this Software without prior written authorization
 from The Open Group.
 */
+/* $XFree86: xc/programs/proxymngr/pmdb.c,v 1.7 2001/12/14 20:01:02 dawes Exp $ */
 
 #include "pmint.h"
 #include "pmdb.h"
 #include "config.h"
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <signal.h>
 
 #if defined(X_NOT_POSIX) && defined(SIGNALRETURNSINT)
@@ -38,14 +40,14 @@ from The Open Group.
 #else
 #define SIGVAL void
 #endif
+typedef SIGVAL (*Signal_Handler)(int);
 
 void SetCloseOnExec (int fd);
 
 static proxy_service *proxyServiceList = NULL;
 
-SIGVAL (*Signal (sig, handler))()
-    int sig;
-    SIGVAL (*handler)();
+static Signal_Handler 
+Signal (int sig, Signal_Handler handler)
 {
 #ifndef X_NOT_POSIX
     struct sigaction sigact, osigact;

@@ -25,12 +25,14 @@ not be used in advertising or otherwise to promote the sale, use or
 other dealings in this Software without prior written authorization
 from The Open Group.
 */
+/* $XFree86: xc/programs/proxymngr/pmint.h,v 1.5 2001/12/14 20:01:02 dawes Exp $ */
 
 #include <stdio.h>
 #include <X11/Xos.h>
 #include <X11/Xfuncs.h>
 #include <X11/Xmd.h>
 #include <X11/ICE/ICElib.h>
+#include <X11/Intrinsic.h>
 
 #define Status int
 #define Bool int
@@ -51,23 +53,28 @@ typedef struct {
     char *release;
 } PMconn;
 
-extern void
-SendGetProxyAddrReply (
-    PMconn* /* requestor */,
-    int /* status */,
-    char* /* addr */,
-    char* /* error */);
 
-extern void
-ForwardRequest(
-    PMconn* /* requestor */,
-    char* /* serviceName */,
-    char* /* serverAddress */,
-    char* /* hostAddress */,
-    char* /* startOptions */,
-    int /* authLen */,
-    char* /* authName */,
-    char* /* authData */);
+/* config.c: $TOG: config.c /main/12 1998/02/09 13:45:22 kaleb $ */
+
+extern int GetConfig ( char *configFile, char *serviceName, int *managed, char **startCommand, char **proxyAddress );
+
+/* main.c: $TOG: main.c /main/36 1998/03/04 11:30:05 barstow $ */
+
+extern void ForwardRequest ( PMconn *requestor, char *serviceName, char *serverAddress, char *hostAddress, char *startOptions, int authLen, char *authName, char *authData );
+extern int HostBasedAuthProc ( char *hostname );
+extern int InitWatchProcs ( XtAppContext appContext );
+extern void InstallIOErrorHandler ( void );
+extern int main ( int argc, char **argv );
+extern void MyIoErrorHandler ( IceConn ice_conn );
+extern void NewConnectionXtProc ( XtPointer client_data, int *source, XtInputId *id );
+extern void PMReplyProcessMessages ( IceConn iceConn, IcePointer clientData, int opcode, unsigned long length, int swap );
+extern void PMSetupProcessMessages ( IceConn iceConn, IcePointer clientData, int opcode, unsigned long length, int swap, IceReplyWaitInfo *replyWait, int *replyReadyRet );
+extern void SendGetProxyAddrReply ( PMconn *requestor, int status, char *addr, char *error );
+extern void SetCloseOnExec ( int fd );
+extern void Usage ( void );
+extern void _XtIceWatchProc ( IceConn ice_conn, IcePointer client_data, int opening, IcePointer *watch_data );
+extern void _XtProcessIceMsgProc ( XtPointer client_data, int *source, XtInputId *id );
+
 
 
 /*
