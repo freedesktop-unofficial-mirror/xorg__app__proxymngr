@@ -62,8 +62,8 @@ IcePaVersionRec	PMReplyVersions[] = {{PM_MAJOR_VERSION, PM_MINOR_VERSION,
 IcePoVersionRec	PMSetupVersions[] = {{PM_MAJOR_VERSION, PM_MINOR_VERSION,
 				      PMSetupProcessMessages}};
 
-char *PM_VENDOR_STRING = "The X.Org Group";
-char *PM_VENDOR_RELEASE = "Release 6.6";
+char *PM_VENDOR_STRING = XVENDORNAME;
+char *PM_VENDOR_RELEASE = XORG_RELEASE;
 
 int verbose = 0;
 
