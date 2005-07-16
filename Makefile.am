@@ -48,7 +48,7 @@ configdir = $(CONFIG_DIR)
 config_DATA = pmconfig
 
 pmconfig: pmconfig.cpp
-	$(SED) -e s/LBXPROXY/`echo @LBXPROXY@ | sed -e s/\\\\//\\\\\\\\\\\\//g`/ < $< > $@
+	$(SED) -e s/LBXPROXY/`echo @LBXPROXY@ | sed -e s/\\\\//\\\\\\\\\\\\//g`/ < $(srcdir)/pmconfig.cpp > $@
 
 EXTRA_DIST = pmconfig.cpp
 CLEANFILES = pmconfig
