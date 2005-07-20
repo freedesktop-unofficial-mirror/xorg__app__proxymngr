@@ -24,12 +24,12 @@ bin_PROGRAMS = proxymngr
 CONFIG_DIR = $(libdir)/X11/proxymngr
 
 proxymngr_CFLAGS =					\
-	$(DEP_CFLAGS)					\
+	$(PROXYMNGR_CFLAGS)					\
 	-DXVENDORNAME=\"The\ X\.Org\ Foundation\"	\
 	-DXORG_RELEASE=\"Release\ $(VERSION)\"		\
 	-DCONFIG_FILE=\"$(CONFIG_DIR)/proxymngr/pmconfig\"
 
-proxymngr_LDADD = $(DEP_LIBS)
+proxymngr_LDADD = $(PROXYMNGR_LIBS)
 
 proxymngr_SOURCES =	\
         config.c \

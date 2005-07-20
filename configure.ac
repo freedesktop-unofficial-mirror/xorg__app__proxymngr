@@ -45,8 +45,8 @@ if [[ -z $SED ]] ; then
 fi
 
 # Checks for pkg-config packages
-PKG_CHECK_MODULES(DEP, ice xt x11 xproxymngproto)
-AC_SUBST(DEP_CFLAGS)
-AC_SUBST(DEP_LIBS)
+PKG_CHECK_MODULES(PROXYMNGR, ice xt x11 xproxymngproto)
+AC_SUBST(PROXYMNGR_CFLAGS)
+AC_SUBST(PROXYMNGR_LIBS)
 
 AC_OUTPUT([Makefile])
