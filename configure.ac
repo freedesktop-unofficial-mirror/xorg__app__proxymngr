@@ -22,7 +22,7 @@ dnl
 dnl Process this file with autoconf to create configure.
 
 AC_PREREQ([2.57])
-AC_INIT(proxymngr,[7.0], [xorg@freedestkop.org],proxymngr)
+AC_INIT(proxymngr,[0.99.0], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg],proxymngr)
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
 
@@ -48,5 +48,7 @@ fi
 PKG_CHECK_MODULES(PROXYMNGR, ice xt x11 xproxymngproto)
 AC_SUBST(PROXYMNGR_CFLAGS)
 AC_SUBST(PROXYMNGR_LIBS)
+
+XORG_RELEASE_VERSION
 
 AC_OUTPUT([Makefile])
