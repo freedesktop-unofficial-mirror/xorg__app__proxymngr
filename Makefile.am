@@ -41,7 +41,7 @@ proxymngr_SOURCES =	\
         pmint.h \
         PMproto.h
 
-dist_man_MANS = \
+dist_man1_MANS = \
         proxymngr.man
 
 configdir = $(CONFIG_DIR)
