@@ -49,6 +49,13 @@ PKG_CHECK_MODULES(PROXYMNGR, ice xt x11 xproxymngproto)
 AC_SUBST(PROXYMNGR_CFLAGS)
 AC_SUBST(PROXYMNGR_LIBS)
 
+AC_CHECK_FUNC(strcasecmp, [], 
+	AC_DEFINE([NEED_STRCASECMP],1,
+		  [Define to 1 if you do not have the `strcasecmp' function.]))
+
+# Needed to check for IPv6 support and set flags appropriately
+XTRANS_TCP_FLAGS
+
 XORG_RELEASE_VERSION
 
 AC_OUTPUT([Makefile])
