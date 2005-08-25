@@ -37,9 +37,7 @@ proxymngr_SOURCES =	\
         main.c \
         pmdb.c \
         pmdb.h \
-        PM.h \
-        pmint.h \
-        PMproto.h
+        pmint.h
 
 dist_man1_MANS = \
         proxymngr.man
