@@ -56,6 +56,7 @@ AC_CHECK_FUNC(strcasecmp, [],
 # Needed to check for IPv6 support and set flags appropriately
 XTRANS_TCP_FLAGS
 
+XORG_MANPAGE_SECTIONS
 XORG_RELEASE_VERSION
 
 AC_OUTPUT([Makefile])
