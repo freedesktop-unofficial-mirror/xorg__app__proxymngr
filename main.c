@@ -518,8 +518,6 @@ Bool		 swap;
 			hints.ai_flags = AI_CANONNAME;
 			if (getaddrinfo(hostname, NULL, &hints, &ai) == 0) {
 			    canonname = ai->ai_canonname;
-			} else {
-			    ai = NULL;
 			}
 		    }
 #else
