@@ -23,8 +23,8 @@ bin_PROGRAMS = proxymngr
 
 CONFIG_DIR = $(libdir)/X11/proxymngr
 
-proxymngr_CFLAGS =					\
-	$(PROXYMNGR_CFLAGS)					\
+AM_CFLAGS =						\
+	$(PROXYMNGR_CFLAGS)				\
 	-DXVENDORNAME=\"The\ X\.Org\ Foundation\"	\
 	-DXORG_RELEASE=\"Release\ $(VERSION)\"		\
 	-DCONFIG_FILE=\"$(CONFIG_DIR)/proxymngr/pmconfig\"
@@ -88,6 +88,6 @@ MAINTAINERCLEANFILES = ChangeLog
 .PHONY: ChangeLog
 
 ChangeLog:
-	(GIT_DIR=$(top_srcdir)/.git git-log > .changelog.tmp && mv .changelog.tmp ChangeLog; rm -f .changelog.tmp) || (touch ChangeLog; echo 'git directory not found: installing possibly empty changelog.' >&2)
+	$(CHANGELOG_CMD)
 
 dist-hook: ChangeLog

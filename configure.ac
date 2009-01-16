@@ -26,6 +26,10 @@ AC_INIT(proxymngr,[1.0.1], [https://bugs.freedesktop.org/enter_bug.cgi?product=x
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
 
+# Require xorg-macros: XORG_CWARNFLAGS, XORG_CHANGELOG
+m4_ifndef([XORG_MACROS_VERSION], [AC_FATAL([must install xorg-macros 1.2 or later before running autoconf/autogen])])
+XORG_MACROS_VERSION(1.2)
+
 # The program itself has a header called config.h so 
 # we have to choose a different name
 AM_CONFIG_HEADER(xconfig.h)
@@ -33,6 +37,8 @@ AM_CONFIG_HEADER(xconfig.h)
 AC_PROG_CPP
 AC_PROG_CC
 AC_PROG_INSTALL
+
+XORG_CWARNFLAGS
 
 AC_PATH_PROG(LBXPROXY, lbxproxy)
 if [[ -z $LBXPROXY ]] ; then
@@ -46,17 +52,19 @@ fi
 
 # Checks for pkg-config packages
 PKG_CHECK_MODULES(PROXYMNGR, ice xt x11 xproxymngproto)
+PROXYMNGR_CFLAGS="$CWARNFLAGS $PROXYMNGR_CFLAGS"
 AC_SUBST(PROXYMNGR_CFLAGS)
 AC_SUBST(PROXYMNGR_LIBS)
 
 AC_CHECK_FUNC(strcasecmp, [], 
 	AC_DEFINE([NEED_STRCASECMP],1,
-		  [Define to 1 if you do not have the `strcasecmp' function.]))
+		  [Define to 1 if you do not have the "strcasecmp" function.]))
 
 # Needed to check for IPv6 support and set flags appropriately
 XTRANS_TCP_FLAGS
 
 XORG_MANPAGE_SECTIONS
 XORG_RELEASE_VERSION
+XORG_CHANGELOG
 
 AC_OUTPUT([Makefile])

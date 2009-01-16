@@ -19,3 +19,7 @@ stamp-h1
 xconfig.h
 xconfig.h.in
 *~
+*.o
+proxymngr-*.tar.*
+ChangeLog
+tags
