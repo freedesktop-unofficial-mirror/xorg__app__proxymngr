@@ -24,6 +24,7 @@ bin_PROGRAMS = proxymngr
 CONFIG_DIR = $(libdir)/X11/proxymngr
 
 AM_CFLAGS =						\
+	$(CWARNFLAGS)					\
 	$(PROXYMNGR_CFLAGS)				\
 	-DXVENDORNAME=\"The\ X\.Org\ Foundation\"	\
 	-DXORG_RELEASE=\"Release\ $(VERSION)\"		\
