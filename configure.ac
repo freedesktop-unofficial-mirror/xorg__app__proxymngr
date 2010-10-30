@@ -26,10 +26,10 @@ AC_INIT(proxymngr,[1.0.1], [https://bugs.freedesktop.org/enter_bug.cgi?product=x
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
 
-# Require xorg-macros: XORG_DEFAULT_OPTIONS
+# Require X.Org macros 1.8 or later for MAN_SUBSTS set by XORG_MANPAGE_SECTIONS
 m4_ifndef([XORG_MACROS_VERSION],
-          [m4_fatal([must install xorg-macros 1.3 or later before running autoconf/autogen])])
-XORG_MACROS_VERSION(1.3)
+          [m4_fatal([must install xorg-macros 1.8 or later before running autoconf/autogen])])
+XORG_MACROS_VERSION(1.8)
 XORG_DEFAULT_OPTIONS
 
 # The program itself has a header called config.h so 
@@ -41,11 +41,6 @@ AC_PROG_CPP
 AC_PATH_PROG(LBXPROXY, lbxproxy)
 if [[ -z $LBXPROXY ]] ; then
    AC_MSG_ERROR([lbxproxy is needed])
-fi
-
-AC_PATH_PROG(SED, sed)
-if [[ -z $SED ]] ; then
-   AC_MSG_ERROR([sed is needed])
 fi
 
 # Checks for pkg-config packages
