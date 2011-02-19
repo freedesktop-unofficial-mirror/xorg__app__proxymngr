@@ -21,9 +21,16 @@ dnl  PERFORMANCE OF THIS SOFTWARE.
 dnl
 dnl Process this file with autoconf to create configure.
 
+# Initialize Autoconf
 AC_PREREQ([2.60])
 AC_INIT([proxymngr], [1.0.2],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg], [proxymngr])
+AC_CONFIG_SRCDIR([Makefile.am])
+# The program itself has a header called config.h so
+# we have to choose a different name
+AC_CONFIG_HEADERS([xconfig.h])
+
+# Initialize Automake
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
 
@@ -33,10 +40,7 @@ m4_ifndef([XORG_MACROS_VERSION],
 XORG_MACROS_VERSION(1.8)
 XORG_DEFAULT_OPTIONS
 
-# The program itself has a header called config.h so 
-# we have to choose a different name
-AM_CONFIG_HEADER(xconfig.h)
-
+# Checks for programs
 AC_PROG_CPP
 
 AC_PATH_PROG(LBXPROXY, lbxproxy)
