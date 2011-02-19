@@ -45,7 +45,7 @@ if [[ -z $LBXPROXY ]] ; then
 fi
 
 # Checks for pkg-config packages
-PKG_CHECK_MODULES(PROXYMNGR, ice xt x11 xproxymngproto)
+PKG_CHECK_MODULES(PROXYMNGR, ice xt xproto xproxymngproto)
 
 AC_CHECK_FUNC(strcasecmp, [], 
 	AC_DEFINE([NEED_STRCASECMP],1,
