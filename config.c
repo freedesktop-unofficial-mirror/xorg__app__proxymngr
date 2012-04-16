@@ -73,9 +73,7 @@ FILE	*f)
 
 #ifdef NEED_STRCASECMP
 int
-ncasecmp (str1, str2, n)
-    char *str1, *str2;
-    int n;
+ncasecmp (const char *str1, const char *str2, int n)
 {
     char buf1[512],buf2[512];
     char c, *s;
@@ -104,8 +102,8 @@ ncasecmp (str1, str2, n)
 
 Status
 GetConfig (
-    char *configFile,
-    char *serviceName,
+    const char *configFile,
+    const char *serviceName,
     Bool *managed,
     char **startCommand,
     char **proxyAddress)

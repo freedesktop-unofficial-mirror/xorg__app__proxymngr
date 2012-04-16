@@ -60,8 +60,8 @@ static IcePaVersionRec	PMReplyVersions[] = {{PM_MAJOR_VERSION, PM_MINOR_VERSION,
 static IcePoVersionRec	PMSetupVersions[] = {{PM_MAJOR_VERSION, PM_MINOR_VERSION,
 				      PMSetupProcessMessages}};
 
-char *PM_VENDOR_STRING = XVENDORNAME;
-char *PM_VENDOR_RELEASE = XORG_RELEASE;
+const char *PM_VENDOR_STRING = XVENDORNAME;
+const char *PM_VENDOR_RELEASE = XORG_RELEASE;
 
 int verbose = 0;
 
@@ -69,7 +69,7 @@ static XtAppContext	appContext;
 
 #define PM_PORT "6500"
 
-static char *configFile = NULL;
+static const char *configFile = NULL;
 
 void
 Usage(void)
@@ -355,8 +355,8 @@ void
 SendGetProxyAddrReply (
     PMconn *requestor,
     int status,
-    char *addr,
-    char *error)
+    const char *addr,
+    const char *error)
 
 {
     int len = STRING_BYTES (addr) + STRING_BYTES (error);

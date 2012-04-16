@@ -41,8 +41,8 @@ from The Open Group.
 #define		True 1
 #define		False 0
 
-extern char *PM_VENDOR_STRING;
-extern char *PM_VENDOR_RELEASE;
+extern const char *PM_VENDOR_STRING;
+extern const char *PM_VENDOR_RELEASE;
 
 extern int verbose;
 
@@ -66,7 +66,7 @@ extern void MyIoErrorHandler ( IceConn ice_conn );
 extern void NewConnectionXtProc ( XtPointer client_data, int *source, XtInputId *id );
 extern void PMReplyProcessMessages ( IceConn iceConn, IcePointer clientData, int opcode, unsigned long length, int swap );
 extern void PMSetupProcessMessages ( IceConn iceConn, IcePointer clientData, int opcode, unsigned long length, int swap, IceReplyWaitInfo *replyWait, int *replyReadyRet );
-extern void SendGetProxyAddrReply ( PMconn *requestor, int status, char *addr, char *error );
+extern void SendGetProxyAddrReply ( PMconn *requestor, int status, const char *addr, const char *error );
 extern void SetCloseOnExec ( int fd );
 extern void Usage ( void );
 extern void _XtIceWatchProc ( IceConn ice_conn, IcePointer client_data, int opening, IcePointer *watch_data );
