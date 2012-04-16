@@ -68,7 +68,7 @@ extern void PMReplyProcessMessages ( IceConn iceConn, IcePointer clientData, int
 extern void PMSetupProcessMessages ( IceConn iceConn, IcePointer clientData, int opcode, unsigned long length, int swap, IceReplyWaitInfo *replyWait, int *replyReadyRet );
 extern void SendGetProxyAddrReply ( PMconn *requestor, int status, const char *addr, const char *error );
 extern void SetCloseOnExec ( int fd );
-extern void Usage ( void );
+extern void Usage ( void ) _X_NORETURN;
 extern void _XtIceWatchProc ( IceConn ice_conn, IcePointer client_data, int opening, IcePointer *watch_data );
 extern void _XtProcessIceMsgProc ( XtPointer client_data, int *source, XtInputId *id );
 
