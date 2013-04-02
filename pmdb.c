@@ -33,12 +33,7 @@ from The Open Group.
 #include <stdlib.h>
 #include <signal.h>
 
-#if defined(X_NOT_POSIX) && defined(SIGNALRETURNSINT)
-#define SIGVAL int
-#else
-#define SIGVAL void
-#endif
-typedef SIGVAL (*Signal_Handler)(int);
+typedef void (*Signal_Handler)(int);
 
 static proxy_service *proxyServiceList = NULL;
 
