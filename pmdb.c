@@ -72,7 +72,7 @@ FindProxyService (
     }
 
     if (createIf) {
-	service = (proxy_service *) malloc (sizeof (proxy_service));
+	service = malloc (sizeof (proxy_service));
 	if (!service)
 	    return NULL;
 
@@ -115,7 +115,7 @@ StartNewProxy (
     if (!service)
 	return NULL;
 
-    proxy = (running_proxy *) malloc (sizeof (running_proxy));
+    proxy = malloc (sizeof (running_proxy));
     if (!proxy)
 	return NULL;
 
@@ -210,7 +210,7 @@ ConnectToProxy (
         SetCloseOnExec (IceConnectionNumber (proxy_iceConn));
 
 	/* See PMprotocolSetupProc */
-	pmConn = (PMconn *) malloc (sizeof (PMconn));
+	pmConn = malloc (sizeof (PMconn));
 
 	if (pmConn == NULL) {
 	    IceCloseConnection (proxy_iceConn);
@@ -239,7 +239,7 @@ ConnectToProxy (
 	pmConn->release = release;
     }
 
-    proxy = (running_proxy *) malloc (sizeof (running_proxy));
+    proxy = malloc (sizeof (running_proxy));
     if (!proxy) {
 	IceCloseConnection (proxy_iceConn);
 	free (pmConn);
@@ -473,7 +473,7 @@ GetRunningProxyList (
     if (!service || !service->proxyCount)
 	return NULL;
 
-    runList = (running_proxy_list *) malloc (sizeof (running_proxy_list) +
+    runList = malloc (sizeof (running_proxy_list) +
 	service->proxyCount * sizeof (running_proxy *));
 
     if (!runList)
@@ -555,7 +555,7 @@ PushRequestorQueue (
     char *authData)
 
 {
-    request_list *newreq = (request_list *) malloc (sizeof (request_list));
+    request_list *newreq = malloc (sizeof (request_list));
 
     if (!newreq)
 	return 0;
@@ -567,7 +567,7 @@ PushRequestorQueue (
     if (authLen > 0)
     {
 	newreq->authName = strdup (authName);
-	newreq->authData = (char *) malloc (authLen);
+	newreq->authData = malloc (authLen);
     }
     else
 	newreq->authName = newreq->authData = NULL;
@@ -720,7 +720,7 @@ PopRequestorQueue (
 
 	    if (newServer)
 	    {
-		server = (server_list *) malloc (sizeof (server_list));
+		server = malloc (sizeof (server_list));
 		server->serverAddress = proxy->requests->serverAddress;
 		server->next = proxy->servers;
 		proxy->servers = server;

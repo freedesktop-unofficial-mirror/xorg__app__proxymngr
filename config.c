@@ -49,9 +49,9 @@ FILE	*f)
 	    else
 		*plen = BUFSIZ;
 	    if (*pbuf)
-		*pbuf = (char *) realloc (*pbuf, *plen + 1);
+		*pbuf = realloc (*pbuf, *plen + 1);
 	    else
-		*pbuf = (char *) malloc (*plen + 1);
+		*pbuf = malloc (*plen + 1);
 	    if (! *pbuf) {
 		fprintf (stderr, "Memory allocation failure reading config file\n");
 		return 0;
@@ -159,7 +159,7 @@ GetConfig (
 	if (*managed)
 	{
 	    n = strlen (p) + 2;
-	    *startCommand = (char *) malloc (n);
+	    *startCommand = malloc (n);
 	    if (! *startCommand) {
 		fprintf (stderr,
 			 "Memory allocation failed for service \"%s\"\n",

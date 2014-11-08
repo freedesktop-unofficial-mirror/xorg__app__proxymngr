@@ -177,7 +177,7 @@ main (int argc, char *argv[])
     }
 
     networkIds = IceComposeNetworkIdList (numTransports, listenObjs);
-    p = (char *) malloc(sizeof ("PROXY_MANAGER") + strlen(networkIds) + 2);
+    p = malloc (sizeof ("PROXY_MANAGER") + strlen(networkIds) + 2);
     sprintf (p, "PROXY_MANAGER=%s", networkIds);
     putenv (p);
     printf ("%s\n", p);
@@ -275,7 +275,7 @@ PMprotocolSetupProc(IceConn iceConn, int majorVersion, int minorVersion,
     static char standardError[] = "Could not allocate memory for new client";
     PMconn *pmConn;
 
-    if ((pmConn = (PMconn *) malloc (sizeof (PMconn))) == NULL)
+    if ((pmConn = malloc (sizeof (PMconn))) == NULL)
     {
 	if (verbose)
 	    fprintf (stderr, "%s\n", standardError);
@@ -449,7 +449,7 @@ PMReplyProcessMessages(IceConn iceConn, IcePointer clientData, int opcode,
 	if (authLen > 0)
 	{
 	    EXTRACT_STRING (pData, swap, authName);
-	    authData = (char *) malloc (authLen);
+	    authData = malloc (authLen);
 	    memcpy (authData, pData, authLen);
 	}
 
@@ -513,7 +513,7 @@ PMReplyProcessMessages(IceConn iceConn, IcePointer clientData, int opcode,
 			char		* pch = strdup (tmpName);
 
 			len = strlen(canonname) + strlen(tmpName) + 1;
-			serverAddress = (char *) realloc (serverAddress, len);
+			serverAddress = realloc (serverAddress, len);
 			sprintf (serverAddress, "%s%s", canonname, pch);
 			free (pch);
 		    }
