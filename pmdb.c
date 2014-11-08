@@ -570,6 +570,8 @@ PushRequestorQueue (
 	newreq->authName = (char *) malloc (strlen (authName) + 1);
 	newreq->authData = (char *) malloc (authLen);
     }
+    else
+	newreq->authName = newreq->authData = NULL;
 
     if (!newreq->serviceName ||
 	!newreq->serverAddress ||
@@ -601,10 +603,6 @@ PushRequestorQueue (
     {
 	strcpy (newreq->authName, authName);
 	memcpy (newreq->authData, authData, authLen);
-    }
-    else
-    {
-	newreq->authName = newreq->authData = NULL;
     }
 
     newreq->requestor = requestor;
