@@ -76,14 +76,13 @@ FindProxyService (
 	if (!service)
 	    return NULL;
 
-	service->serviceName = (char *) malloc (nameLen + 1);
+	service->serviceName = strdup (serviceName);
 	if (!service->serviceName)
 	{
 	    free (service);
 	    return NULL;
 	}
 
-	strcpy (service->serviceName, serviceName);
 	service->proxyCount = 0;
 	service->proxyList = NULL;
 
@@ -561,13 +560,13 @@ PushRequestorQueue (
     if (!newreq)
 	return 0;
 
-    newreq->serviceName = (char *) malloc (strlen (serviceName) + 1);
-    newreq->serverAddress = (char *) malloc (strlen (serverAddress) + 1);
-    newreq->hostAddress = (char *) malloc (strlen (hostAddress) + 1);
-    newreq->startOptions = (char *) malloc (strlen (startOptions) + 1);
+    newreq->serviceName = strdup (serviceName);
+    newreq->serverAddress = strdup (serverAddress);
+    newreq->hostAddress = strdup (hostAddress);
+    newreq->startOptions = strdup (startOptions);
     if (authLen > 0)
     {
-	newreq->authName = (char *) malloc (strlen (authName) + 1);
+	newreq->authName = strdup (authName);
 	newreq->authData = (char *) malloc (authLen);
     }
     else
@@ -595,13 +594,8 @@ PushRequestorQueue (
 	return 0;
     }
 
-    strcpy (newreq->serviceName, serviceName);
-    strcpy (newreq->serverAddress, serverAddress);
-    strcpy (newreq->hostAddress, hostAddress);
-    strcpy (newreq->startOptions, startOptions);
     if (authLen > 0)
     {
-	strcpy (newreq->authName, authName);
 	memcpy (newreq->authData, authData, authLen);
     }
 

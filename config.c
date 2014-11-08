@@ -172,14 +172,13 @@ GetConfig (
 	}
 	else
 	{
-	    *proxyAddress = (char *) malloc (strlen (p) + 1);
+	    *proxyAddress = strdup (p);
 	    if (! *proxyAddress) {
 		fprintf (stderr,
 			 "Memory allocation failed for service \"%s\" at %s\n",
 			 serviceName, p);
 		break;
 	    }
-	    strcpy (*proxyAddress, p);
 	}
 
 	found = 1;
