@@ -158,17 +158,15 @@ GetConfig (
 
 	if (*managed)
 	{
-	    n = strlen (p);
-	    *startCommand = (char *) malloc (n + 2);
+	    n = strlen (p) + 2;
+	    *startCommand = (char *) malloc (n);
 	    if (! *startCommand) {
 		fprintf (stderr,
 			 "Memory allocation failed for service \"%s\"\n",
 			 serviceName);
 		break;
 	    }
-	    strcpy (*startCommand, p);
-	    (*startCommand)[n] = '&';
-	    (*startCommand)[n + 1] = '\0';
+	    snprintf(*startCommand, n, "%s&", p);
 	}
 	else
 	{
