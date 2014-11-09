@@ -539,18 +539,12 @@ PMReplyProcessMessages(IceConn iceConn, IcePointer clientData, int opcode,
 	ForwardRequest (pmConn, serviceName, serverAddress, hostAddress,
 			startOptions, authLen, authName, authData);
 
-	if (serviceName)
-	    free (serviceName);
-	if (serverAddress)
-	    free (serverAddress);
-	if (hostAddress)
-	    free (hostAddress);
-	if (startOptions)
-	    free (startOptions);
-	if (authName)
-	    free (authName);
-	if (authData)
-	    free (authData);
+	free (serviceName);
+	free (serverAddress);
+	free (hostAddress);
+	free (startOptions);
+	free (authName);
+	free (authData);
 
 	break;
     }
@@ -793,10 +787,8 @@ PMReplyProcessMessages(IceConn iceConn, IcePointer clientData, int opcode,
 		    }
 		}
 
-		if (startCommand)
-		    free (startCommand);
-		if (proxyAddress)
-		    free (proxyAddress);
+		free (startCommand);
+		free (proxyAddress);
 
 		PopRequestorQueue (pmConn, False,
 		    runningProxy ? False : True /* free proxy list */);
@@ -836,10 +828,8 @@ PMReplyProcessMessages(IceConn iceConn, IcePointer clientData, int opcode,
 	    }
 	}
 
-	if (addr)
-	    free (addr);
-	if (error)
-	    free (error);
+	free (addr);
+	free (error);
 
 	break;
     }
@@ -976,10 +966,8 @@ ForwardRequest(PMconn *requestor, char *serviceName, char *serverAddress,
 		}
 	    }
 
-	    if (startCommand)
-		free (startCommand);
-	    if (proxyAddress)
-		free (proxyAddress);
+	    free (startCommand);
+	    free (proxyAddress);
 	}
     }
 

@@ -372,20 +372,13 @@ ProxyGone (
 					req->authLen, req->authName,
 					req->authData);
 		    }
-		    if (req->serviceName)
-			free (req->serviceName);
-		    if (req->serverAddress)
-			free (req->serverAddress);
-		    if (req->hostAddress)
-			free (req->hostAddress);
-		    if (req->startOptions)
-			free (req->startOptions);
-		    if (req->listData)
-			free (req->listData);	/* proxyList */
-		    if (req->authName)
-			free (req->authName);
-		    if (req->authData)
-			free (req->authData);
+		    free (req->serviceName);
+		    free (req->serverAddress);
+		    free (req->hostAddress);
+		    free (req->startOptions);
+		    free (req->listData);	/* proxyList */
+		    free (req->authName);
+		    free (req->authData);
 		    free (req);
 		    req = nextreq;
 		}
@@ -418,20 +411,13 @@ ProxyGone (
 
 			*prev_reqP = req->next;
 
-			if (req->serviceName)
-			    free (req->serviceName);
-			if (req->serverAddress)
-			    free (req->serverAddress);
-			if (req->hostAddress)
-			    free (req->hostAddress);
-			if (req->startOptions)
-			    free (req->startOptions);
-			if (req->listData)
-			    free (req->listData);	/* proxyList */
-			if (req->authName)
-			    free (req->authName);
-			if (req->authData)
-			    free (req->authData);
+			free (req->serviceName);
+			free (req->serverAddress);
+			free (req->hostAddress);
+			free (req->startOptions);
+			free (req->listData);	/* proxyList */
+			free (req->authName);
+			free (req->authData);
 			free (req);
 
 			/* return; */ /* should but only one req, but... */
@@ -578,18 +564,12 @@ PushRequestorQueue (
 	!newreq->startOptions ||
 	(authLen > 0 && (!newreq->authName || !newreq->authData)))
     {
-	if (newreq->serviceName)
-	    free (newreq->serviceName);
-	if (newreq->serverAddress)
-	    free (newreq->serverAddress);
-	if (newreq->hostAddress)
-	    free (newreq->hostAddress);
-	if (newreq->startOptions)
-	    free (newreq->startOptions);
-	if (newreq->authName)
-	    free (newreq->authName);
-	if (newreq->authData)
-	    free (newreq->authData);
+	free (newreq->serviceName);
+	free (newreq->serverAddress);
+	free (newreq->hostAddress);
+	free (newreq->startOptions);
+	free (newreq->authName);
+	free (newreq->authData);
 	free (newreq);
 	return 0;
     }
@@ -730,18 +710,12 @@ PopRequestorQueue (
 	if (!newServer)
 	    free (proxy->requests->serverAddress);
 
-	if (proxy->requests->serviceName)
-	    free (proxy->requests->serviceName);
-	if (proxy->requests->hostAddress)
-	    free (proxy->requests->hostAddress);
-	if (proxy->requests->startOptions)
-	    free (proxy->requests->startOptions);
-	if (freeProxyList && proxy->requests->listData)
-	    free (proxy->requests->listData);	/* proxyList */
-	if (proxy->requests->authName)
-	    free (proxy->requests->authName);
-	if (proxy->requests->authData)
-	    free (proxy->requests->authData);
+	free (proxy->requests->serviceName);
+	free (proxy->requests->hostAddress);
+	free (proxy->requests->startOptions);
+	free (proxy->requests->listData);	/* proxyList */
+	free (proxy->requests->authName);
+	free (proxy->requests->authData);
 
 	requestor = proxy->requests->requestor;
 

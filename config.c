@@ -182,8 +182,7 @@ GetConfig (
 	found = 1;
     }
 
-    if (buf)
-	free (buf);
+    free (buf);
 
     fclose (fp);
     return found;
